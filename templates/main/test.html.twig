@@ -1,13 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Series tests</title>
-</head>
-<body>
-    <h1>tesuto</h1>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Test
+{% endblock %}
+
+{% block body %}
+<div>
+    {# créer une variable #}
+    {% set name = "Guillaume" %}
+    <h2>{{ name | upper }}</h2>
+    <p>(prénom de {{ name | length }} caractères)</p>
+
+    {# créer un tableau #}
+    {% set colors = ["orange", "green", "blue", "red"] %}
+    <ul>
+        {% for color in colors %}
+            <li style="background-color: {{ color }}">{{ loop.index }} {{ color }}</li>
+        {% endfor %}
+    </ul>
+    <p>nombre de couleurs : {{ colors | length }}</p>
+    <p>{{ colors | join(' | ') }}</p>
+
+    {# créer un objet #}
+    {%
+        set book = {
+            title: "Harry Potter and the Philosopher's Stone",
+            year: 1997,
+            autor: "J. K. Rowling"
+        }
+    %}
+    <h3>{{ book.autor }}</h3>
+    <div>
+        {% for key, val in book %}
+            {% if key != "autor" %}
+                <p>{{ key }} : {{ val }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <p>{{ "now" | date('d/m/Y') }}</p>
+</div>
+{% endblock %}
