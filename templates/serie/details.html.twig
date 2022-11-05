@@ -4,10 +4,29 @@
     {{ serie.name }} | {{ parent() }}
 {% endblock %}
 
+{% block extrastyles %}
+    <style>
+        body {
+            background-image:
+                    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+                    url("{{ asset('img/backdrops/' ~ serie.backdrop) }}");
+            );
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h2>{{ serie.name }}</h2>
-    <p>{{ serie.overview }}</p>
-    <p>{{ serie.vote }}</p>
+    <div>
+        <img src="{{ asset('img/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+    </div>
+    <div class="serie-details-infos">
+        <h2>{{ serie.name }}</h2>
+        <p>User ratings: {{ serie.vote }}</p>
+        <p>Categorized in: {{ serie.genres }}</p>
+        <p>Serie status: {{ serie.status }}</p>
+        <p>Aired from {{ serie.firstAirDate | date('Y-m-d') }} to {{ serie.lastAirDate | date('Y-m-d') }}</p>
+        <p>{{ serie.overview | nl2br }}</p>
+    </div>
 {% endblock %}
 
 
