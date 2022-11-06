@@ -8,7 +8,8 @@
     <section class="series-list">
         {% for serie in series %}
             <article>
-                <a href="{{ path('serie_details', {'id': serie.id}) }}" title="View series's details">
+                <a href="{{ path('serie_details', {'id': serie.id}) }}"
+                   title="View series's details | {{ serie.seasons|length }} season{{ serie.seasons|length == 1 ? '' : 's' }}">
                     <img src="{{ asset('img/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
                 </a>
             </article>

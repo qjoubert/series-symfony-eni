@@ -26,6 +26,21 @@
         <p>Serie status: {{ serie.status }}</p>
         <p>Aired from {{ serie.firstAirDate | date('Y-m-d') }} to {{ serie.lastAirDate | date('Y-m-d') }}</p>
         <p>{{ serie.overview | nl2br }}</p>
+        
+        <section class="seasons">
+            <h3>Seasons</h3>
+            {% for season in serie.seasons %}
+                <article>
+                    <img src="{{ asset('img/posters/seasons/' ~ season.poster) }}" alt="{{ serie.name }} season #{{ season.number }}">
+                    <div>
+                        <h4>Season {{ season.number }}</h4>
+                        {% if season.overview %}
+                            <p>{{ season.overview }}</p>
+                        {% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
     </div>
 {% endblock %}
 
